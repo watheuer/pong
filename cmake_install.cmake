@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/wathe/Google Drive/workspace/pong
+# Install script for directory: C:/Users/wathe/Desktop/pong
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/wathe/Google Drive/workspace/pong/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/wathe/Desktop/pong/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

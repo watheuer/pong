@@ -47,10 +47,10 @@ RM = "C:\Program Files (x86)\CMake\bin\cmake.exe" -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "C:\Users\wathe\Google Drive\workspace\pong"
+CMAKE_SOURCE_DIR = C:\Users\wathe\Desktop\pong
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "C:\Users\wathe\Google Drive\workspace\pong"
+CMAKE_BINARY_DIR = C:\Users\wathe\Desktop\pong
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\wathe\Google Drive\workspace\pong\CMakeFiles" "C:\Users\wathe\Google Drive\workspace\pong\CMakeFiles\progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\wathe\Desktop\pong\CMakeFiles C:\Users\wathe\Desktop\pong\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "C:\Users\wathe\Google Drive\workspace\pong\CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\wathe\Desktop\pong\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
