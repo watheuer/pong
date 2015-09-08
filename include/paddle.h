@@ -6,7 +6,7 @@ namespace pong {
 	private:
 		sf::RectangleShape rect;
 		static const int SPEED = 500;
-		static const int HEIGHT = 50;
+		static const int HEIGHT = 80;
 		static const int WIDTH = 10;
 
 	public:

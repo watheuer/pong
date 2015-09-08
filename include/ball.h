@@ -14,6 +14,6 @@ namespace pong {
 		Ball(float startX, float startY);
 		sf::RectangleShape getRect() { return rect; }
 		void update(float delta);
-
+		void hit();
 	};
 }
