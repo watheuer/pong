@@ -1,7 +1,9 @@
 #include "ball.hpp"
 
-namespace pong {
-	Ball::Ball(float startX, float startY)
+namespace pong 
+{
+	Ball::Ball(float startX, float startY, Scoreboard* scoreboard):
+	scoreboard(scoreboard)
 	{
 		rect = sf::RectangleShape(sf::Vector2f(width, height));
 		rect.setPosition(startX, startY);
@@ -21,12 +23,14 @@ namespace pong {
 		// right scored
 		if (pos.x <= 0) {
 			rect.setPosition(400, 300);
+			scoreboard->scoreRight();
 			reset();
 		}
 		
 		// left scored
 		if (pos.x >= 800 - width) {
 			rect.setPosition(400, 300);
+			scoreboard->scoreLeft();
 			reset();
 		}
 
@@ -52,6 +56,6 @@ namespace pong {
 	void Ball::hit()
 	{
 		vx *= -1.02;
-		vy += random(-50, 50);
+		vy += random(-70, 70);
 	}
 }

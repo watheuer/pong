@@ -203,6 +203,33 @@ src/paddle.cpp.s:
 	$(MAKE) -f CMakeFiles\pong.dir\build.make CMakeFiles/pong.dir/src/paddle.cpp.s
 .PHONY : src/paddle.cpp.s
 
+src/scoreboard.obj: src/scoreboard.cpp.obj
+
+.PHONY : src/scoreboard.obj
+
+# target to build an object file
+src/scoreboard.cpp.obj:
+	$(MAKE) -f CMakeFiles\pong.dir\build.make CMakeFiles/pong.dir/src/scoreboard.cpp.obj
+.PHONY : src/scoreboard.cpp.obj
+
+src/scoreboard.i: src/scoreboard.cpp.i
+
+.PHONY : src/scoreboard.i
+
+# target to preprocess a source file
+src/scoreboard.cpp.i:
+	$(MAKE) -f CMakeFiles\pong.dir\build.make CMakeFiles/pong.dir/src/scoreboard.cpp.i
+.PHONY : src/scoreboard.cpp.i
+
+src/scoreboard.s: src/scoreboard.cpp.s
+
+.PHONY : src/scoreboard.s
+
+# target to generate assembly for a file
+src/scoreboard.cpp.s:
+	$(MAKE) -f CMakeFiles\pong.dir\build.make CMakeFiles/pong.dir/src/scoreboard.cpp.s
+.PHONY : src/scoreboard.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -221,6 +248,9 @@ help:
 	@echo ... src/paddle.obj
 	@echo ... src/paddle.i
 	@echo ... src/paddle.s
+	@echo ... src/scoreboard.obj
+	@echo ... src/scoreboard.i
+	@echo ... src/scoreboard.s
 .PHONY : help
 
 

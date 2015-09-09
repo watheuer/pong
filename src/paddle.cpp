@@ -1,7 +1,8 @@
 #include "paddle.hpp"
 #include <cmath>
 
-namespace pong {
+namespace pong 
+{
 	Paddle::Paddle(float startX, float startY, float initSpeed):
 	moveUp(false), moveDown(false)
 	{

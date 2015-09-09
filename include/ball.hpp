@@ -6,7 +6,13 @@
 #include "entity.hpp"
 #endif
 
-namespace pong {
+#ifndef SCORE_HPP
+#define SCORE_HPP
+#include "scoreboard.hpp"
+#endif
+
+namespace pong 
+{
 	class Ball : public Entity
 	{
 	private:
@@ -15,9 +21,10 @@ namespace pong {
 		static const int INIT_VY = 300;
 		static const int INIT_VX = 400;
 		float random(float min, float max);
+		Scoreboard* scoreboard;
 		
 	public:
-		Ball(float startX, float startY);
+		Ball(float startX, float startY, pong::Scoreboard* scoreboard);
 		
 		void update(float delta);
 		void hit();

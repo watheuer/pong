@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 
-namespace pong {
+namespace pong 
+{
 	class Entity
 	{
 	protected:

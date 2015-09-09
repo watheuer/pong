@@ -11,7 +11,9 @@ int main(int argc, char** argv)
 	std::vector<pong::Entity*> entities;
 	pong::Paddle paddle1(30, 250, 500);
 	pong::Paddle paddle2(760, 250, 300);
-	pong::Ball ball(400, 300);
+	pong::Scoreboard scoreboard(10);
+	pong::Ball ball(400, 300, &scoreboard);
+
 	
 	// add to entities list
 	entities.push_back(&paddle1);
@@ -70,16 +72,17 @@ int main(int argc, char** argv)
 
 		// draw entities
 		window.clear();
+		scoreboard.render(&window);
 		for (unsigned i = 0; i < entities.size(); i++)
 		{
 			pong::Entity* e = entities[i];
 			e->render(&window);
 		}
 
+
 		// display
 		window.display();
 	}
 
-	// Done.
 	return 0;
 }
