@@ -11,8 +11,8 @@ namespace pong
 	{
 	private:
 		float speed;
-		static const int height = 80;
-		static const int width = 10;
+		static const int HEIGHT = 80;
+		static const int WIDTH = 10;
 		
 	public:
 		Paddle(float startX, float startY, float speed);
@@ -22,8 +22,8 @@ namespace pong
 		bool moveDown;
 		void render(sf::RenderWindow* window);
 		
-		const int getHeight() { return height; }
-		const int getWidth() { return width; }
+		const int getHeight() { return HEIGHT; }
+		const int getWidth() { return WIDTH; }
 		float getVelocity() { return vy; }
 	};
 }

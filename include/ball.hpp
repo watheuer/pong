@@ -21,13 +21,12 @@ namespace pong
 	class Ball : public Entity
 	{
 	private:
-		static const int height = 10;
-		static const int width = 10;
-		static const int INIT_SPEED= 300;
+		static const int HEIGHT = 10;
+		static const int WIDTH = 10;
+		static const int INIT_SPEED= 450;
 		static const float MAXBOUNCE = 1.047; // 60 degrees
 		
-		static float random(float min, float max);
-		int speed;
+		float speed;
 		Scoreboard* scoreboard;
 		
 	public:
@@ -38,7 +37,7 @@ namespace pong
 		void render(sf::RenderWindow* window);
 		void reset(int direction);
 		
-		const int getHeight() { return height; }
-		const int getWidth() { return width; }
+		const int getHeight() { return HEIGHT; }
+		const int getWidth() { return WIDTH; }
 	};
 }

@@ -6,7 +6,7 @@ namespace pong
 	Paddle::Paddle(float startX, float startY, float initSpeed):
 	moveUp(false), moveDown(false)
 	{
-		rect = sf::RectangleShape(sf::Vector2f(width, height));
+		rect = sf::RectangleShape(sf::Vector2f(WIDTH, HEIGHT));
 		rect.setPosition(startX, startY);
 		
 		speed = initSpeed;
@@ -19,7 +19,7 @@ namespace pong
 		if (moveUp && rect.getPosition().y > 0)
 		{
 			rect.move(0, -vy * delta);
-		} else if (moveDown && rect.getPosition().y < 600 - height)
+		} else if (moveDown && rect.getPosition().y < 600 - HEIGHT)
 		{
 			rect.move(0, vy * delta);
 		}

@@ -13,7 +13,6 @@ int main(int argc, char** argv)
 	pong::Scoreboard scoreboard(10);
 	pong::Ball ball(400, 300, &scoreboard);
 
-	
 	// add to entities list
 	entities.push_back(&paddle1);
 	entities.push_back(&paddle2);
