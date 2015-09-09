@@ -5,7 +5,8 @@
 #include "entity.hpp"
 #endif
 
-namespace pong {
+namespace pong 
+{
 	class Paddle : public Entity
 	{
 	private:
@@ -15,10 +16,12 @@ namespace pong {
 		
 	public:
 		Paddle(float startX, float startY, float speed);
+		
 		void update(float delta);
 		bool moveUp;
 		bool moveDown;
 		void render(sf::RenderWindow* window);
+		
 		const int getHeight() { return height; }
 		const int getWidth() { return width; }
 		float getVelocity() { return vy; }

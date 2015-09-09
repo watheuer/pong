@@ -11,6 +11,11 @@
 #include "scoreboard.hpp"
 #endif
 
+#ifndef PADDLE_HPP
+#define PADDLE_HPP
+#include "paddle.hpp"
+#endif
+
 namespace pong 
 {
 	class Ball : public Entity
@@ -18,18 +23,20 @@ namespace pong
 	private:
 		static const int height = 10;
 		static const int width = 10;
-		static const int INIT_VY = 300;
-		static const int INIT_VX = 400;
-		float random(float min, float max);
+		static const int INIT_SPEED= 300;
+		static const float MAXBOUNCE = 1.047; // 60 degrees
+		
+		static float random(float min, float max);
+		int speed;
 		Scoreboard* scoreboard;
 		
 	public:
 		Ball(float startX, float startY, pong::Scoreboard* scoreboard);
 		
 		void update(float delta);
-		void hit();
+		void hit(Paddle* paddle, int direction);
 		void render(sf::RenderWindow* window);
-		void reset();
+		void reset(int direction);
 		
 		const int getHeight() { return height; }
 		const int getWidth() { return width; }

@@ -1,4 +1,5 @@
 #include "ball.hpp"
+#include <math.h>
 
 namespace pong 
 {
@@ -9,8 +10,9 @@ namespace pong
 		rect.setPosition(startX, startY);
 
 		// test values
-		vy = INIT_VY;
-		vx = INIT_VX;
+		speed = 600;
+		vy = 300;
+		vx = 300;
 	}
 
 	void Ball::update(float delta) 
@@ -24,23 +26,23 @@ namespace pong
 		if (pos.x <= 0) {
 			rect.setPosition(400, 300);
 			scoreboard->scoreRight();
-			reset();
+			reset(-1);
 		}
 		
 		// left scored
 		if (pos.x >= 800 - width) {
 			rect.setPosition(400, 300);
 			scoreboard->scoreLeft();
-			reset();
+			reset(1);
 		}
 
 		rect.move(vx*delta, -vy*delta);
 	}
 	
-	void Ball::reset()
+	void Ball::reset(int direction)
 	{
-		vy = INIT_VY;
-		vx = INIT_VX;
+		vy = 300;
+		vx = 300;
 	}
 	
 	float Ball::random(float min, float max)
@@ -53,9 +55,14 @@ namespace pong
 		window->draw(rect);
 	}
 
-	void Ball::hit()
+	/* logic taken from http://gamedev.stackexchange.com/questions/4253/in-pong-how-do-you-calculate-the-balls-direction-when-it-bounces-off-the-paddl */
+	void Ball::hit(Paddle* paddle, int direction)
 	{
-		vx *= -1.02;
-		vy += random(-70, 70);
+		float relativeY = ((paddle->getY() + (paddle->getHeight()/2)) - (this->getY() + this->getHeight()/2))
+							/(paddle->getHeight()/2);
+		float bounce = relativeY * MAXBOUNCE;
+		
+		vx = speed * cos(bounce) * direction;
+		vy = speed * sin(bounce);
 	}
 }

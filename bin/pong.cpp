@@ -1,6 +1,5 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "paddle.hpp"
 #include "ball.hpp"
 
 int main(int argc, char** argv)
@@ -41,7 +40,7 @@ int main(int argc, char** argv)
 		paddle1.moveDown = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
 		
 		// follow behavior for second paddle
-		if (ball.getRect().getPosition().y < paddle2.getRect().getPosition().y + paddle2.getHeight()/2)
+		if (ball.getY() + ball.getHeight()/2 < paddle2.getY() + paddle2.getHeight()/2)
 		{
 			paddle2.moveUp = true;
 			paddle2.moveDown = false;
@@ -55,11 +54,11 @@ int main(int argc, char** argv)
 		// check collision
 		if (ball.getRect().getGlobalBounds().intersects(paddle1.getRect().getGlobalBounds()))
 		{
-			ball.hit();
+			ball.hit(&paddle1, 1);
 		}
 		if (ball.getRect().getGlobalBounds().intersects(paddle2.getRect().getGlobalBounds()))
 		{
-			ball.hit();
+			ball.hit(&paddle2, -1);
 		}
 		
 		// update objects
