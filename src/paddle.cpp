@@ -1,25 +1,31 @@
-#include "paddle.h"
+#include "paddle.hpp"
+#include <cmath>
 
 namespace pong {
-	Paddle::Paddle(float startX, float startY)
+	Paddle::Paddle(float startX, float startY, float initSpeed):
+	moveUp(false), moveDown(false)
 	{
-		rect = sf::RectangleShape(sf::Vector2f(WIDTH, HEIGHT));
+		rect = sf::RectangleShape(sf::Vector2f(width, height));
 		rect.setPosition(startX, startY);
+		
+		speed = initSpeed;
 	}
-
-	void Paddle::moveUp(float delta)
+	
+	void Paddle::update(float delta)
 	{
-		// don't let rect leave screen
-		if (rect.getPosition().y > 0) {
-			rect.move(0, -SPEED * delta);
+		vy = speed;
+		
+		if (moveUp && rect.getPosition().y > 0)
+		{
+			rect.move(0, -vy * delta);
+		} else if (moveDown && rect.getPosition().y < 600 - height)
+		{
+			rect.move(0, vy * delta);
 		}
 	}
-
-	void Paddle::moveDown(float delta)
+	
+	void Paddle::render(sf::RenderWindow* window)
 	{
-		// don't let rect leave screen
-		if (rect.getPosition().y < 600 - HEIGHT) {
-			rect.move(0, SPEED * delta);
-		}
+		window->draw(rect);
 	}
 }
