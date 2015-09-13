@@ -5,23 +5,18 @@
 
 namespace pong 
 {
-	Ball::Ball(float startX, float startY, Scoreboard* scoreboard):
+	Ball::Ball(Scoreboard* scoreboard):
 	scoreboard(scoreboard),
 	speed(INIT_SPEED),
-	MAXBOUNCE(1.047)
+	MAXBOUNCE(1.047),
+	INIT_ANGLE(0.7853)
 	{
 		rect = sf::RectangleShape(sf::Vector2f(WIDTH, HEIGHT));
-		rect.setPosition(startX, startY);
-		
-		// random seed
-		std::srand(std::time(NULL));
-		std::rand();
+		rect.setPosition(INIT_X, INIT_Y);
 
-		// init values
-		float startAngle = MAXBOUNCE/2 - ((float) std::rand() / RAND_MAX) * MAXBOUNCE;
-
-		vy = speed * std::cos(startAngle);
-		vx = speed * std::sin(startAngle);
+		// init values, random initial angle based on maximum bounce
+		vy = speed * std::cos(INIT_ANGLE);
+		vx = speed * std::sin(INIT_ANGLE);
 	}
 
 	void Ball::update(float delta) 
@@ -60,11 +55,10 @@ namespace pong
 	void Ball::reset(int direction)
 	{
 		speed = INIT_SPEED;
+		rect.setPosition(INIT_X, INIT_Y);
 		
-		// random starting angle
-		float startAngle = MAXBOUNCE/2 - ((float) std::rand() / RAND_MAX) * MAXBOUNCE;
-		vx = speed * std::cos(startAngle) * direction;
-		vy = speed * std::sin(startAngle);
+		vx = speed * std::cos(INIT_ANGLE) * direction;
+		vy = speed * std::sin(INIT_ANGLE);
 	}
 	
 	void Ball::render(sf::RenderWindow* window)

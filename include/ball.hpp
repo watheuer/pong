@@ -24,13 +24,16 @@ namespace pong
 		static const int HEIGHT = 10;
 		static const int WIDTH = 10;
 		static const int INIT_SPEED = 450;
+		static const int INIT_X = 400;
+		static const int INIT_Y = 0;
 		const float MAXBOUNCE;
+		const float INIT_ANGLE;
 		
 		float speed;
 		Scoreboard* scoreboard;
 		
 	public:
-		Ball(float startX, float startY, pong::Scoreboard* scoreboard);
+		Ball(pong::Scoreboard* scoreboard);
 		
 		void update(float delta);
 		void hit(Paddle* paddle, int direction);
