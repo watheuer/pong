@@ -15,6 +15,7 @@ namespace pong
 		
 		// random seed
 		std::srand(std::time(NULL));
+		std::rand();
 
 		// init values
 		float startAngle = MAXBOUNCE/2 - ((float) std::rand() / RAND_MAX) * MAXBOUNCE;
@@ -28,7 +29,16 @@ namespace pong
 		sf::Vector2f pos = rect.getPosition();
 
 		// bounce on upper edges
-		if (pos.y <= 0 || pos.y >= 600 - HEIGHT) vy *= -1;
+		if (pos.y < 0)
+		{
+			vy *= -1;
+			rect.setPosition(pos.x, 0);
+		} else if(pos.y > 600 - HEIGHT) 
+		{
+			vy *= -1;
+			rect.setPosition(pos.x, 600 - HEIGHT);
+		}
+		
 
 		// right scored
 		if (pos.x <= 0) {
