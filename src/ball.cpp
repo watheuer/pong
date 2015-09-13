@@ -21,30 +21,26 @@ namespace pong
 
 	void Ball::update(float delta) 
 	{
-		sf::Vector2f pos = rect.getPosition();
-
 		// bounce on upper edges
-		if (pos.y < 0)
+		if (getY() < 0)
 		{
 			vy *= -1;
-			rect.setPosition(pos.x, 0);
-		} else if(pos.y > 600 - HEIGHT) 
+			rect.setPosition(getX(), 0);
+		} else if(getY() > 600 - HEIGHT) 
 		{
 			vy *= -1;
-			rect.setPosition(pos.x, 600 - HEIGHT);
+			rect.setPosition(getX(), 600 - HEIGHT);
 		}
 		
 
 		// right scored
-		if (pos.x <= 0) {
-			rect.setPosition(400, 300);
+		if (getX() <= 0) {
 			scoreboard->scoreRight();
 			reset(-1);
 		}
 		
 		// left scored
-		if (pos.x >= 800 - WIDTH) {
-			rect.setPosition(400, 300);
+		if (getX() >= 800 - WIDTH) {
 			scoreboard->scoreLeft();
 			reset(1);
 		}
