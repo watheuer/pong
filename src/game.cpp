@@ -4,7 +4,7 @@ Game::Game():
 gameState(GAME), 
 paddle1(30, 250, 500),
 paddle2(760, 250, 300),
-scoreboard(11),
+scoreboard(10),
 ball(&scoreboard),
 window(sf::VideoMode(800, 600, 32), "Pong", sf::Style::Close)
 {

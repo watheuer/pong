@@ -16,8 +16,8 @@ namespace pong
 	public:
 		Scoreboard(int max);
 		
-		void scoreLeft() { leftScore++; }
-		void scoreRight() { rightScore++; }
+		void scoreLeft();
+		void scoreRight();
 		void render(sf::RenderWindow* window);
 	};
 }
