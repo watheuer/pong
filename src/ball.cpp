@@ -7,7 +7,8 @@ namespace pong
 {
 	Ball::Ball(float startX, float startY, Scoreboard* scoreboard):
 	scoreboard(scoreboard),
-	speed(INIT_SPEED)
+	speed(INIT_SPEED),
+	MAXBOUNCE(1.047)
 	{
 		rect = sf::RectangleShape(sf::Vector2f(WIDTH, HEIGHT));
 		rect.setPosition(startX, startY);

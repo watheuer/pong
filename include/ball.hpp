@@ -23,8 +23,8 @@ namespace pong
 	private:
 		static const int HEIGHT = 10;
 		static const int WIDTH = 10;
-		static const int INIT_SPEED= 450;
-		static const float MAXBOUNCE = 1.047; // 60 degrees
+		static const int INIT_SPEED = 450;
+		const float MAXBOUNCE;
 		
 		float speed;
 		Scoreboard* scoreboard;
