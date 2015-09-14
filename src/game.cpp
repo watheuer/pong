@@ -7,6 +7,7 @@ paddle1(30, 500),
 paddle2(760, 300),
 scoreboard(10),
 ball(&scoreboard),
+multiplayer(false),
 window(sf::VideoMode(800, 600, 32), "Pong", sf::Style::Close)
 {	
 	// add to entities list
@@ -26,11 +27,12 @@ window(sf::VideoMode(800, 600, 32), "Pong", sf::Style::Close)
 	subtext.setStyle(sf::Text::Regular);
 	subtext.setCharacterSize(20);
 	subtext.setColor(sf::Color::Green);
-	subtext.setString("Press Enter to start.");
+	subtext.setString("Press 1 for single player. Use W and S to control paddle.\nPress 2 for multiplayer. Use W and S and Up/Down arrows.");
 }
 
 void Game::newGame()
 {
+	// reset paddles and scoreboard
 	gameState = GAME;
 	paddle1.reset();
 	paddle2.reset();
@@ -51,7 +53,7 @@ void Game::run()
 				drawMenu();
 				break;
 			case GAME:
-				updateAI();
+				if (!multiplayer) updateAI();
 				update(elapsed);
 				draw();
 				break;
@@ -81,6 +83,14 @@ void Game::processInput()
 	paddle1.moveUp = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
 	paddle1.moveDown = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
 	
+	// multiplayer input
+	if (multiplayer)
+	{
+		paddle2.moveUp = sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+		paddle2.moveDown = sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
+	}
+	
+	// restart screen
 	if (gameState == RESTART)
 	{
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
@@ -89,10 +99,17 @@ void Game::processInput()
 			window.close();
 	}
 	
+	// main menu
 	if (gameState == MENU)
 	{
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num1))
 			gameState = GAME;
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Num2))
+		{
+			multiplayer = true;
+			gameState = GAME;
+			paddle2.setSpeed(500);
+		}
 	}
 }
 
@@ -157,6 +174,7 @@ void Game::draw()
 
 void Game::drawRestart()
 {
+	// draw strings for restart
 	text.setPosition(400-text.getGlobalBounds().width/2, 50);
 	subtext.setPosition(400-text.getGlobalBounds().width/2, 500);
 	subtext.setString("Press R to restart or Q to quit.");
@@ -168,6 +186,7 @@ void Game::drawRestart()
 
 void Game::drawMenu()
 {
+	// draw default menu strings
 	text.setPosition(400-text.getGlobalBounds().width/2, 50);
 	subtext.setPosition(400-text.getGlobalBounds().width/2, 500);
 	

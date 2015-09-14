@@ -23,6 +23,8 @@ private:
 	void drawRestart();
 	void drawMenu();
 	
+	bool multiplayer;
+	
 	GameState gameState;
 	sf::RenderWindow window;
 	sf::Clock clock;

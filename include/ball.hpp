@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include <cstdlib>
 
 #ifndef ENTITY_HPP
@@ -28,6 +29,14 @@ namespace pong
 		static const int INIT_Y = 0;
 		const float MAXBOUNCE;
 		const float INIT_ANGLE;
+		const float VARIATION;
+		
+		sf::SoundBuffer paddleBuffer;
+		sf::SoundBuffer sideBuffer;
+		sf::SoundBuffer scoreBuffer;
+		sf::Sound paddleSound;
+		sf::Sound sideSound;
+		sf::Sound scoreSound;
 		
 		float speed;
 		Scoreboard* scoreboard;

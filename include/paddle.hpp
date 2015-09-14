@@ -23,6 +23,7 @@ namespace pong
 		bool moveDown;
 		void render(sf::RenderWindow* window);
 		void reset();
+		void setSpeed(float s) { speed = s; }
 		
 		const int getHeight() { return HEIGHT; }
 		const int getWidth() { return WIDTH; }
