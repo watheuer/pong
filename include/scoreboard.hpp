@@ -18,6 +18,7 @@ namespace pong
 		bool leftWin;
 		bool rightWin;
 		
+		void reset();
 		void scoreLeft();
 		void scoreRight();
 		void render(sf::RenderWindow* window);

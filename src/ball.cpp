@@ -35,14 +35,14 @@ namespace pong
 
 		// right scored
 		if (getX() <= 0) {
-			scoreboard->scoreRight();
 			reset(-1);
+			scoreboard->scoreRight();
 		}
 		
 		// left scored
 		if (getX() >= 800 - WIDTH) {
-			scoreboard->scoreLeft();
 			reset(1);
+			scoreboard->scoreLeft();
 		}
 
 		rect.move(vx*delta, -vy*delta);

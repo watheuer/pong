@@ -25,6 +25,7 @@ void Game::newGame()
 	gameState = GAME;
 	paddle1.reset();
 	paddle2.reset();
+	scoreboard.reset();
 }
 
 void Game::run()
@@ -66,6 +67,10 @@ void Game::processInput()
 	// check for keyboard input
 	paddle1.moveUp = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
 	paddle1.moveDown = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
+	
+	if (gameState == RESTART && sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
+		newGame();
+	}
 }
 
 void Game::updateAI()

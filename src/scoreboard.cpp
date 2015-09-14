@@ -37,6 +37,14 @@ namespace pong
 		window->draw(text2);
 	}
 	
+	void Scoreboard::reset()
+	{
+		leftScore = 0;
+		rightScore = 0;
+		leftWin = false;
+		rightWin = false;
+	}
+	
 	void Scoreboard::scoreLeft()
 	{
 		if (leftScore < maxScore)
