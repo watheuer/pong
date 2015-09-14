@@ -8,7 +8,7 @@ paddle2(760, 300),
 scoreboard(10),
 ball(&scoreboard),
 multiplayer(false),
-window(sf::VideoMode(800, 600, 32), "Pong", sf::Style::Close)
+window(sf::VideoMode(800, 600, 32), "Pong", sf::Style::Default)
 {	
 	// add to entities list
 	entities.push_back(&paddle1);
