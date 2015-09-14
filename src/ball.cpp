@@ -32,7 +32,6 @@ namespace pong
 			rect.setPosition(getX(), 600 - HEIGHT);
 		}
 		
-
 		// right scored
 		if (getX() <= 0) {
 			reset(-1);

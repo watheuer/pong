@@ -16,17 +16,19 @@ public:
 	Game();
 	
 private:
-	void update();
+	void update(float delta);
 	void updateAI();
 	void draw();
 	void processInput();
 	void drawRestart();
+	void drawMenu();
 	
 	GameState gameState;
 	sf::RenderWindow window;
 	sf::Clock clock;
 	sf::Font font;
 	sf::Text text;
+	sf::Text subtext;
 	
 	std::vector<pong::Entity*> entities;
 	pong::Paddle paddle1;

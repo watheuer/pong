@@ -1,7 +1,8 @@
 #include "game.hpp"
+#include <iostream>
 
 Game::Game():
-gameState(GAME), 
+gameState(MENU), 
 paddle1(30, 500),
 paddle2(760, 300),
 scoreboard(10),
@@ -13,11 +14,19 @@ window(sf::VideoMode(800, 600, 32), "Pong", sf::Style::Close)
 	entities.push_back(&paddle2);
 	entities.push_back(&ball);
 
+	// setup fonts and strings
 	font.loadFromFile("Roboto-Regular.ttf");
 	text.setFont(font);
 	text.setStyle(sf::Text::Regular);
 	text.setCharacterSize(60);
 	text.setColor(sf::Color::White);
+	text.setString("PONG by Will Theuer");
+	
+	subtext.setFont(font);
+	subtext.setStyle(sf::Text::Regular);
+	subtext.setCharacterSize(20);
+	subtext.setColor(sf::Color::Green);
+	subtext.setString("Press Enter to start.");
 }
 
 void Game::newGame()
@@ -33,13 +42,17 @@ void Game::run()
 	while(window.isOpen())
 	{
 		processInput();
+		float elapsed = clock.restart().asSeconds();
 		
 		// update different components
 		switch (gameState)
 		{
+			case MENU:
+				drawMenu();
+				break;
 			case GAME:
 				updateAI();
-				update();
+				update(elapsed);
 				draw();
 				break;
 			case RESTART:
@@ -68,8 +81,18 @@ void Game::processInput()
 	paddle1.moveUp = sf::Keyboard::isKeyPressed(sf::Keyboard::W);
 	paddle1.moveDown = sf::Keyboard::isKeyPressed(sf::Keyboard::S);
 	
-	if (gameState == RESTART && sf::Keyboard::isKeyPressed(sf::Keyboard::R)) {
-		newGame();
+	if (gameState == RESTART)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::R))
+			newGame();
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+			window.close();
+	}
+	
+	if (gameState == MENU)
+	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+			gameState = GAME;
 	}
 }
 
@@ -88,10 +111,8 @@ void Game::updateAI()
 	}
 }
 
-void Game::update()
+void Game::update(float delta)
 {
-	float elapsed;
-	
 	// check collision
 	if (ball.getRect().getGlobalBounds().intersects(paddle1.getRect().getGlobalBounds()))
 	{
@@ -107,21 +128,18 @@ void Game::update()
 	{
 		gameState = RESTART;
 		text.setString("You win!");
-		text.setPosition(50, 50);
 	}
 	if (scoreboard.rightWin)
 	{
 		gameState = RESTART;
 		text.setString("You lose!");
-		text.setPosition(50, 50);
 	}
 	
 	// update objects
-	elapsed = clock.restart().asSeconds();
 	for (unsigned i = 0; i < entities.size(); i++)
 	{
 		pong::Entity* e = entities[i];
-		e->update(elapsed);
+		e->update(delta);
 	}
 }
 
@@ -139,6 +157,21 @@ void Game::draw()
 
 void Game::drawRestart()
 {
+	text.setPosition(400-text.getGlobalBounds().width/2, 50);
+	subtext.setPosition(400-text.getGlobalBounds().width/2, 500);
+	subtext.setString("Press R to restart or Q to quit.");
+	
 	window.clear();
 	window.draw(text);
+	window.draw(subtext);
+}
+
+void Game::drawMenu()
+{
+	text.setPosition(400-text.getGlobalBounds().width/2, 50);
+	subtext.setPosition(400-text.getGlobalBounds().width/2, 500);
+	
+	window.clear();
+	window.draw(text);
+	window.draw(subtext);
 }
