@@ -2,27 +2,49 @@
 
 Game::Game():
 gameState(GAME), 
-paddle1(30, 250, 500),
-paddle2(760, 250, 300),
+paddle1(30, 500),
+paddle2(760, 300),
 scoreboard(10),
 ball(&scoreboard),
 window(sf::VideoMode(800, 600, 32), "Pong", sf::Style::Close)
-{
+{	
 	// add to entities list
 	entities.push_back(&paddle1);
 	entities.push_back(&paddle2);
 	entities.push_back(&ball);
+
+	font.loadFromFile("Roboto-Regular.ttf");
+	text.setFont(font);
+	text.setStyle(sf::Text::Regular);
+	text.setCharacterSize(60);
+	text.setColor(sf::Color::White);
+}
+
+void Game::newGame()
+{
+	gameState = GAME;
+	paddle1.reset();
+	paddle2.reset();
 }
 
 void Game::run()
 {
 	while(window.isOpen())
 	{
-		// update different components
 		processInput();
-		updateAI();
-		update();
-		draw();
+		
+		// update different components
+		switch (gameState)
+		{
+			case GAME:
+				updateAI();
+				update();
+				draw();
+				break;
+			case RESTART:
+				drawRestart();
+				break;
+		}
 		
 		// display
 		window.display();
@@ -75,6 +97,20 @@ void Game::update()
 		ball.hit(&paddle2, -1);
 	}
 	
+	// check for win 
+	if (scoreboard.leftWin) 
+	{
+		gameState = RESTART;
+		text.setString("You win!");
+		text.setPosition(50, 50);
+	}
+	if (scoreboard.rightWin)
+	{
+		gameState = RESTART;
+		text.setString("You lose!");
+		text.setPosition(50, 50);
+	}
+	
 	// update objects
 	elapsed = clock.restart().asSeconds();
 	for (unsigned i = 0; i < entities.size(); i++)
@@ -94,4 +130,10 @@ void Game::draw()
 		pong::Entity* e = entities[i];
 		e->render(&window);
 	}
+}
+
+void Game::drawRestart()
+{
+	window.clear();
+	window.draw(text);
 }

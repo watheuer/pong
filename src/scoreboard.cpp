@@ -5,7 +5,7 @@
 namespace pong 
 {
 	Scoreboard::Scoreboard(int max):
-	leftScore(0), rightScore(0), maxScore(max)
+	leftScore(0), rightScore(0), maxScore(max), leftWin(false), rightWin(false)
 	{
 		if (!font.loadFromFile("Roboto-Regular.ttf"))
 		{
@@ -43,7 +43,7 @@ namespace pong
 		{
 			leftScore++;
 		} else {
-			// win!
+			leftWin = true;
 		}
 	}
 	
@@ -53,7 +53,7 @@ namespace pong
 		{
 			rightScore++;
 		} else {
-			// win!
+			rightWin = true;
 		}
 	}
 }

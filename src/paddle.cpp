@@ -3,11 +3,11 @@
 
 namespace pong 
 {
-	Paddle::Paddle(float startX, float startY, float initSpeed):
+	Paddle::Paddle(float startX, float initSpeed):
 	moveUp(false), moveDown(false)
 	{
 		rect = sf::RectangleShape(sf::Vector2f(WIDTH, HEIGHT));
-		rect.setPosition(startX, startY);
+		rect.setPosition(startX, INIT_Y);
 		
 		speed = initSpeed;
 	}
@@ -28,5 +28,10 @@ namespace pong
 	void Paddle::render(sf::RenderWindow* window)
 	{
 		window->draw(rect);
+	}
+	
+	void Paddle::reset()
+	{
+		rect.setPosition(getX(), INIT_Y);
 	}
 }

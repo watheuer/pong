@@ -15,6 +15,8 @@ namespace pong
 		
 	public:
 		Scoreboard(int max);
+		bool leftWin;
+		bool rightWin;
 		
 		void scoreLeft();
 		void scoreRight();

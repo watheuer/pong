@@ -12,6 +12,7 @@ public:
 		RESTART
 	};
 	void run();
+	void newGame();
 	Game();
 	
 private:
@@ -19,10 +20,13 @@ private:
 	void updateAI();
 	void draw();
 	void processInput();
+	void drawRestart();
 	
 	GameState gameState;
 	sf::RenderWindow window;
 	sf::Clock clock;
+	sf::Font font;
+	sf::Text text;
 	
 	std::vector<pong::Entity*> entities;
 	pong::Paddle paddle1;

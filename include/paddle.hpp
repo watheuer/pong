@@ -13,14 +13,16 @@ namespace pong
 		float speed;
 		static const int HEIGHT = 80;
 		static const int WIDTH = 10;
+		static const int INIT_Y = 250;
 		
 	public:
-		Paddle(float startX, float startY, float speed);
+		Paddle(float startX, float speed);
 		
 		void update(float delta);
 		bool moveUp;
 		bool moveDown;
 		void render(sf::RenderWindow* window);
+		void reset();
 		
 		const int getHeight() { return HEIGHT; }
 		const int getWidth() { return WIDTH; }
